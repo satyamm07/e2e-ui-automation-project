@@ -132,6 +132,19 @@ public class HelperActionsUtils extends BaseSetup {
         }
     }
 
+    public String getAttribute(By element) {
+        try {
+            waitForElementToPresence(element, 10);
+            String string = driver.findElement(element).getAttribute("value");
+            return string;
+        } catch (Exception ex) {
+            String exceptionData = ex.getCause().getMessage();
+            BASE_LOGGER.error("getAttribute operation has been failed for the locator : "
+                    + String.valueOf(element) + " with the exception i.e : " + exceptionData);
+            return null;
+        }
+    }
+
     public boolean isDisplayed(By element) {
         boolean isDisplayed = false;
         try {
