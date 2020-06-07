@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Purchase Product Test" thread-count="1">
+    <listeners>
+        <listener class-name="core.utils.ExtentReporterNG" />
+    </listeners>
+    <test name="Purchase Product with failed payment">
+        <classes>
+            <class name="specs.PurchaseProductFailedPaymentTest"/>
+        </classes>
+    </test>
+</suite>

@@ -34,4 +34,5 @@ public interface PurchaseProductLocators {
     By BANK_PAGE_OK_BUTTON = By.xpath("//button[@name='ok']");
     By TRANSACTION_SUCCESS = By.cssSelector(".trans-success");
     By RETRY_BUTTON = By.xpath("//button[@title='Reset the timer']");
+    By FAILED_TRANSACTION_SCREEN_TEXT = By.xpath("//span[text()='Transaction failed']");
 }

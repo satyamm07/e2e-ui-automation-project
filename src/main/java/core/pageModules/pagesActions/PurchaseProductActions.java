@@ -232,6 +232,7 @@ public class PurchaseProductActions extends HelperActionsUtils implements Purcha
     }
 
     public void enterOtpNumber(String otpNumber) {
+        waitForElementToBeClickAble(OTP_FIELD, 30);
         driver.switchTo().frame(0);
         softAssert.assertEquals(isDisplayed(OTP_FIELD), true,
                 "Enter OTP number field not displayed");
@@ -247,12 +248,25 @@ public class PurchaseProductActions extends HelperActionsUtils implements Purcha
         LOGGER.info("Successfully clicked on the OK button!!");
     }
 
-    public void verifySuccessScreen() {
+    public void verifyPaymentSuccessScreen() {
         driver.switchTo().defaultContent();
         waitForElementToBeDisplay(TRANSACTION_SUCCESS, 30);
         softAssert.assertEquals(isDisplayed(TRANSACTION_SUCCESS), true,
                 "Success screen not displayed");
         LOGGER.info("Successfully verified the success message after purchase!!");
+    }
+
+    public void verifyPaymentFailureScreen() {
+        driver.switchTo().parentFrame();
+        waitForElementToBeDisplay(FAILED_TRANSACTION_SCREEN_TEXT, 30);
+        softAssert.assertEquals(isDisplayed(FAILED_TRANSACTION_SCREEN_TEXT), true,
+                "Failed Transaction screen not displayed");
+        LOGGER.info("Successfully verified the failed message after purchase!!");
+    }
+
+    public void clearCardNumber() {
+        safeClear(CARD_NUMBER_FIELD);
+        LOGGER.info("Successfully cleared the card number!!");
     }
 
 }

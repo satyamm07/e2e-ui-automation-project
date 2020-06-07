@@ -4,13 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.awt.*;
 
-public class PurchaseProductSuccessPaymentTest extends BaseTest {
-    protected final Logger LOGGER = LoggerFactory.getLogger(PurchaseProductSuccessPaymentTest.class);
+public class PurchaseProductFailedPaymentTest extends BaseTest {
+
+    protected final Logger LOGGER = LoggerFactory.getLogger(PurchaseProductFailedPaymentTest.class);
     private String AMOUNT = "50000";
     private String CUSTOMER_NAME = "Satyam Mishra";
     private String CUSTOMER_EMAIL = "satyam@yopmail.com";
@@ -18,7 +18,7 @@ public class PurchaseProductSuccessPaymentTest extends BaseTest {
     private String CUSTOMER_CITY = "Bangalore";
     private String CUSTOMER_ADDRESS = "BTM Bangalore, karnataka, India";
     private int CUSTOMER_POSTAL_CODE = 560026;
-    private String SUCCESS_PAYMENT_CARD_NUMBER = "4811111111111114";
+    private String FAILED_PAYMENT_CARD_NUMBER = "4911111111111113";
     private String CARD_EXPIRY_DATE = "0521";
     private String CARD_CVV_NUMBER = "123";
     private String CARD_OTP_NUMBER = "112233";
@@ -57,7 +57,7 @@ public class PurchaseProductSuccessPaymentTest extends BaseTest {
 
     @Test(description = "To verify, user is able make the successful payment", priority = 3)
     public void testMakeSuccessfulPayment() throws AWTException {
-        purchaseProductActions.enterCardNumber(SUCCESS_PAYMENT_CARD_NUMBER);
+        purchaseProductActions.enterCardNumber(FAILED_PAYMENT_CARD_NUMBER);
         purchaseProductActions.enterExpiryDate(CARD_EXPIRY_DATE);
         purchaseProductActions.enterCardCvvNumber(CARD_CVV_NUMBER);
         purchaseProductActions.clickOnPayNowButton();
@@ -66,10 +66,10 @@ public class PurchaseProductSuccessPaymentTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "To verify, user is able view the success screen after successful payment", priority = 4,
+    @Test(description = "To verify, user is able view the Failed transaction screen after successful payment", priority = 4,
             dependsOnMethods = "testMakeSuccessfulPayment")
-    public void testToVerifySuccessScreen() {
-        purchaseProductActions.verifyPaymentSuccessScreen();
+    public void testToVerifyFailedTransactionScreen() {
+        purchaseProductActions.verifyPaymentFailureScreen();
         softAssert.assertAll();
     }
 
@@ -78,4 +78,5 @@ public class PurchaseProductSuccessPaymentTest extends BaseTest {
         getFailedScreenshot(result);
         getScreenshotOnAnyCase(result);
     }
+
 }
