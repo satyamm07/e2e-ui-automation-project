@@ -1,7 +1,8 @@
-package core.utils;
+package specs;
 
 import core.helperActions.HelperActionsUtils;
-import core.pageModules.pagesActions.CommonActions;
+import core.pageModules.pagesActions.PurchaseProductActions;
+import core.utils.BaseSetup;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,12 +13,12 @@ public class BaseTest extends BaseSetup {
 
     public WebDriver driver;
     public HelperActionsUtils helperActionsUtils;
-    public CommonActions commonActions;
+    public PurchaseProductActions purchaseProductActions;
 
     @BeforeClass
     public void createInstance() throws IOException {
         driver = initializeDriver();
-        commonActions = new CommonActions(driver);
+        purchaseProductActions = new PurchaseProductActions(driver);
         helperActionsUtils = new HelperActionsUtils(driver);
     }
 
